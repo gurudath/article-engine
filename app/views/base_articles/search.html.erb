@@ -1,0 +1,21 @@
+<h1>Listing articles</h1>
+<%= link_to 'New Article', new_article_path %>
+<div id="facets">
+  <h3>Authors</h3>
+  <ul>
+    <% for row in @results.facet(:author_ids).rows %>  
+      <li>
+          <strong><%= Author.find(row.value).name if row%> (<%= row.count %>)</strong>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<table width="100%"  border="0">
+  <tr class="decoration_tr" valign="top">
+    <td class='main_td'>
+       <%cache("component2") do%>
+      <%=raw render_template_in_format({:object=>@base_articles,:header_include=>[],:main_header=>{'id'=>'Id',"title"=>"Title","content"=>"Content"},:decoration=>"/decoration/decoration",:partial=>"/pagenates/index"})%>
+       <%end%>
+      <%#=raw render_template_in_format({:object=>Person.all,:header_include=>['id'],:main_header=>{'id'=>'You Tube Video'},:decoration=>"/decoration/decoration_empty",:partial=>"/pagenates/you_tube_video"})%>
+    </td>
+</table>
