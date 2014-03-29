@@ -3,7 +3,12 @@ class BaseArticlesController < ApplicationController
 
   # GET /base_articles
   def index
-    @base_articles = BaseArticle.all
+    @base_articles = BaseArticle.paginate(:page => params[:page], :per_page => 2,:order=>"id DESC")
+    if !params[:page].blank?
+     render :template=>"/base_articles/index",:layout =>false
+    else
+     render :template=>"/base_articles/index",:layout =>"article_application"
+    end 
   end
 
   # GET /base_articles/1
@@ -24,7 +29,7 @@ class BaseArticlesController < ApplicationController
     @base_article = BaseArticle.new(base_article_params)
 
     if @base_article.save
-      redirect_to @base_article, notice: 'Base article was successfully created.'
+      redirect_to action:"index", notice: 'Base article was successfully created.'
     else
       render action: 'new'
     end
@@ -33,7 +38,7 @@ class BaseArticlesController < ApplicationController
   # PATCH/PUT /base_articles/1
   def update
     if @base_article.update(base_article_params)
-      redirect_to @base_article, notice: 'Base article was successfully updated.'
+      redirect_to action:"index",notice: 'Base article was successfully updated.'
     else
       render action: 'edit'
     end
@@ -53,6 +58,6 @@ class BaseArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def base_article_params
-      params.require(:base_article).permit(:title, :content)
+      params.require(:base_article).permit(:title, :content,:medium,:description)
     end
 end

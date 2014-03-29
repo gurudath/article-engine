@@ -1,8 +1,27 @@
 <% object.each do |obj|%>
- <tr>
-   <% header_include.each do |a|%>
-    <td><%=obj.send(a)%></td>
-   <% end %>
-   <p>    <%=raw obj.content if (obj.id == 4 || obj.id == 5 || obj.id == 6)%></p>
- </tr>
+  <!--div class="img"-->
+    <%if obj.medium =='text'%>	
+    <div class="span4">
+      <div class="caption">
+     <div class="item">					
+      <% header_include.each do |a|%>
+       <%=raw obj.send(a)%>
+      <% end %>
+      </div>
+     </div>	
+    </div>
+   <%else%>
+    <div class="span4">
+     <div class="item">
+       <%=raw obj.content%>
+    </div>
+   </div>	
+   <%end%>
+ 	<!--/div-->
 <% end%>
+
+
+
+							
+							
+		

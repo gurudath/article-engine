@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<title>Responsive Web Mobile</title>
+
+	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Included Bootstrap CSS Files -->
+	<link rel="stylesheet" href="/stylesheets/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/stylesheets/bootstrap/css/bootstrap-responsive.min.css" />
+	
+	<!-- Css -->	
+	<link rel="stylesheet" href="/stylesheets/article_style.css" />
+    <%= csrf_meta_tags %>
+</head>
+<body id="start">
+
+	<!-- This is the overlay DIV that is displayed while loading a new page -->
+	<div id="loader"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<div class="hero-unit">
+					<h1>Infinite Scroll</h1>
+					<p class="">here is a simple example of a infinite scroll!</p>
+				</div>
+			</div>
+		</div>
+		<!-- This is the main container (#scroll-container) -->
+		<div id="scroll-container" class="row">
+			<%= yield %>
+		</div>
+	</div>
+   
+	<!-- These are all the links that can be loaded. -->
+	<div id="pages">
+		<!--a href="./index.html"></a>
+		<a href="./page2.html"></a>
+		<a href="./page3.html"></a>
+		<a href="./page4.html"></a>
+		<a href="./page5.html"></a>
+		<a href="./page6.html"></a-->
+		<%=will_paginate(@base_articles)%>
+	</div>
+	
+
+	<script src="/javascripts/jquery-1.10.0.min.js"></script>
+	<script src="/javascripts/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/javascripts/script.js"></script>
+</body>
+<style type="text/css">
+ .span4 {
+ 	height:"200";
+    background-color: #DCDCDC;
+    margin-top: 10px;
+ }
+</style>
+</html>

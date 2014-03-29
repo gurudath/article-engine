@@ -1,5 +1,8 @@
-<%#= form_for(@article) do |f| %>
-<%=form_tag(:controller=>'base_articles',:action=>(@base_article.new_record? ? 'create' : 'update')) do |f|%>
+<%if @base_article.new_record?%>
+<%=form_tag(:controller=>'base_articles',:action=>'create') %>
+<%else%>
+<%=form_tag(:controller=>'base_articles',:action=>'update',:id=>@base_article.id)%>
+<%end%>
   <% if @base_article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -13,7 +16,12 @@
   <% end %>
 
   <div class="field">
-    <label for="name">Title:</label><%=text_field("base_article","title")%></p>
+    <label for="name">Title:</label><%=text_field("base_article","title")%>
+  </div>  
+  <div class="field">
+    <label for="name">Text Medium:<%=radio_button_tag 'base_article[medium]', 'text'%>
+    Video Medium:<%=radio_button_tag 'base_article[medium]', 'video'%></label>
+  </div>
   <div class="field">
    <label for="name">Author:</label>
     <%= select_tag "base_article[author_ids][]", options_for_select(Author.all.collect{|x| [x.name,x.id]},@base_article.author_ids), {:multiple => :multiple, :size => 10} %>
@@ -75,4 +83,3 @@
   <div class="actions">
     <%= submit_tag("submit") %>
   </div>
-<% end %>
