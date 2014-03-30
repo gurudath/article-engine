@@ -1,3 +1,4 @@
+ <script  type="text/javascript" src="/javascripts/jquery.popupWindow.js"></script>
 <%if @base_article.new_record?%>
 <%=form_tag(:controller=>'base_articles',:action=>'create') %>
 <%else%>
@@ -29,7 +30,7 @@
   <div class="field">
         <label for="name">Description:</label><%=text_field("base_article","description")%></p>
   </div>
-  <div class="field">
+    <div class="field">
     <label for="name">Content:</label>
     <script type="text/javascript" src="/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript">
@@ -80,6 +81,22 @@
 <textarea id="elm1" name="base_article[content]" rows="15" cols="80" style="width: 80%"><%=@base_article.content%></textarea>
      <%#=text_field("articel","content")%></p>
   </div>
+  <div class="field">
+  <p id="after_upload"><label for="name">Profile Image:</label><a href="/image?popup=true" title="profile image" class="windowpopup">Insert Image</a></p>
+ <p id="before_upload" style="display:none">
+ <%=hidden_field_tag("base_article[base_article_image]","",:id=>"profile_image_id")%>
+ <%=image_tag("",:alt=>"profile_image",:id=>"profile_image")%>
+</p>
+</div>
   <div class="actions">
     <%= submit_tag("submit") %>
   </div>
+<script type="text/javascript">
+$('.windowpopup').popupWindow({ 
+height:500, 
+width:800, 
+top:50, 
+scrollbars:true,
+left:50 
+});
+</script>

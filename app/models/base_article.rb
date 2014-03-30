@@ -1,6 +1,7 @@
 class BaseArticle < ActiveRecord::Base
 has_many :base_article_authors
 has_many :authors , :through=>:base_article_authors
+has_many :image_properties, :as => :entity
 
 
 # searchable do
@@ -33,6 +34,12 @@ end
   return @results
  end
 
+ def base_article_image=(profle_image)
+  self.image_properties.delete_all if !self.image_properties.blank?
+  image=BaseImage.find(profle_image)
+  image_path = image.resize_image(100,100)
+  image_property = self.image_properties.new(:image_id=>profle_image,:entity_type=>"BaseArticle",:image_path=>image_path)
+ end 
 # after_create do |article|
 #   article.index!
 # end

@@ -7,6 +7,7 @@
       <% header_include.each do |a|%>
        <%=raw obj.send(a)%>
       <% end %>
+      <%=image_tag(obj.image_properties.first.image_path) if !obj.image_properties.blank?%>
       </div>
      </div>	
     </div>
