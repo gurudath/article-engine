@@ -1,13 +1,13 @@
 class BaseArticlesController < ApplicationController
   before_action :set_base_article, only: [:show, :edit, :update, :destroy]
-
+  layout "article_application"
   # GET /base_articles
   def index
     @base_articles = BaseArticle.paginate(:page => params[:page], :per_page => 2,:order=>"id DESC")
     if !params[:page].blank?
      render :template=>"/base_articles/index",:layout =>false
     else
-     render :template=>"/base_articles/index",:layout =>"article_application"
+     render :template=>"/base_articles/index"
     end 
   end
 
@@ -53,6 +53,7 @@ class BaseArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_base_article
+      debugger
       @base_article = BaseArticle.find(params[:id])
     end
 

@@ -19,10 +19,7 @@
   <div class="field">
     <label for="name">Title:</label><%=text_field("base_article","title")%>
   </div>  
-  <div class="field">
-    <label for="name">Text Medium:<%=radio_button_tag 'base_article[medium]', 'text'%>
-    Video Medium:<%=radio_button_tag 'base_article[medium]', 'video'%></label>
-  </div>
+  <%=hidden_field_tag("id",@base_article.id) if !@base_article.blank?%>
   <div class="field">
    <label for="name">Author:</label>
     <%= select_tag "base_article[author_ids][]", options_for_select(Author.all.collect{|x| [x.name,x.id]},@base_article.author_ids), {:multiple => :multiple, :size => 10} %>
@@ -78,7 +75,7 @@
   });
 </script>
 <!-- /TinyMCE -->.
-<textarea id="elm1" name="base_article[content]" rows="15" cols="80" style="width: 80%"><%=@base_article.content%></textarea>
+<textarea id="elm1" name="base_article[content]" rows="15" cols="30" style="width: 50%"><%=@base_article.content%></textarea>
      <%#=text_field("articel","content")%></p>
   </div>
   <div class="field">
@@ -88,6 +85,11 @@
  <%=image_tag("",:alt=>"profile_image",:id=>"profile_image")%>
 </p>
 </div>
+  <div class="field">
+    <label for="name">Text Medium:<%=radio_button_tag 'base_article[medium]', 'text'%>
+    Video Medium:<%=radio_button_tag 'base_article[medium]', 'video'%></label>
+  </div>
+  </div>
   <div class="actions">
     <%= submit_tag("submit") %>
   </div>
@@ -100,3 +102,8 @@ scrollbars:true,
 left:50 
 });
 </script>
+<style>
+form{margin-left: 27px;}
+#scroll-container h1 {margin-left: 27px;}
+label {float: left;}
+</style>

@@ -36,9 +36,11 @@ end
 
  def base_article_image=(profle_image)
   self.image_properties.delete_all if !self.image_properties.blank?
+  if !profle_image.blank?
   image=BaseImage.find(profle_image)
   image_path = image.resize_image(100,100)
   image_property = self.image_properties.new(:image_id=>profle_image,:entity_type=>"BaseArticle",:image_path=>image_path)
+  end
  end 
 # after_create do |article|
 #   article.index!

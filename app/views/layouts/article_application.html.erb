@@ -27,6 +27,11 @@
 					<p class="">here is a simple example of a infinite scroll!</p>
 				</div>
 			</div>
+			<% if @current_user %>
+             Logged in as <%= @current_user.email_id %>
+             <%= link_to "Log out", :controller=>"login",:action=>"logout"  %>
+            <% else %>
+            <% end %>
 		</div>
 		<!-- This is the main container (#scroll-container) -->
 		<div id="scroll-container" class="row">
@@ -35,15 +40,11 @@
 	</div>
    
 	<!-- These are all the links that can be loaded. -->
+	<%if !@base_articles.blank?%>
 	<div id="pages">
-		<!--a href="./index.html"></a>
-		<a href="./page2.html"></a>
-		<a href="./page3.html"></a>
-		<a href="./page4.html"></a>
-		<a href="./page5.html"></a>
-		<a href="./page6.html"></a-->
 		<%=will_paginate(@base_articles)%>
 	</div>
+	<%end%>
 	
 
 	<script src="/javascripts/jquery-1.10.0.min.js"></script>
