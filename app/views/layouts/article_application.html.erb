@@ -10,6 +10,11 @@
 	<link rel="stylesheet" href="/stylesheets/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/stylesheets/bootstrap/css/bootstrap-responsive.min.css" />
 	
+	<script src="/javascripts/jquery-1.10.0.min.js"></script>
+	<script src="/javascripts/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/javascripts/script.js"></script>
+	<script  type="text/javascript" src="/javascripts/jquery.popupWindow.js"></script>
+
 	<!-- Css -->	
 	<link rel="stylesheet" href="/stylesheets/article_style.css" />
     <%= csrf_meta_tags %>
@@ -28,7 +33,7 @@
 				</div>
 			</div>
 			<% if @current_user %>
-             Logged in as <%= @current_user.email_id %>
+             Logged in as <%= @current_user.email %>
              <%= link_to "Log out", :controller=>"login",:action=>"logout"  %>
             <% else %>
             <% end %>
@@ -45,12 +50,16 @@
 		<%=will_paginate(@base_articles)%>
 	</div>
 	<%end%>
-	
-
-	<script src="/javascripts/jquery-1.10.0.min.js"></script>
-	<script src="/javascripts/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/javascripts/script.js"></script>
-</body>
+	</body>
+<script type="text/javascript">
+jQuery('.windowpopup').popupWindow({ 
+height:500, 
+width:800, 
+top:50, 
+scrollbars:true,
+left:50 
+});
+</script>
 <style type="text/css">
  .span4 {
  	height:"200";

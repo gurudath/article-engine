@@ -1,28 +1,22 @@
 <% object.each do |obj|%>
   <!--div class="img"-->
-    <%if obj.medium =='text'%>	
+    <%if obj.medium =='text'%>  
     <div class="span4">
       <div class="caption">
-     <div class="item">					
+     <div class="item">         
       <% header_include.each do |a|%>
        <%=raw obj.send(a)%>
       <% end %>
       <%=image_tag(obj.image_properties.first.image_path) if !obj.image_properties.blank?%>
       </div>
-     </div>	
+     </div> 
     </div>
    <%else%>
     <div class="span4">
      <div class="item">
        <%=raw obj.content%>
     </div>
-   </div>	
+   </div> 
    <%end%>
- 	<!--/div-->
+  <!--/div-->
 <% end%>
-
-
-
-							
-							
-		
